@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coder index{% endblock %}
+
+{% block body %}
+    <h1>Coder index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Edad</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coder in coders %}
+            <tr>
+                <td>{{ coder.id }}</td>
+                <td>{{ coder.name }}</td>
+                <td>{{ coder.edad }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary">
+                        <a style="color: white;" href="{{ path('app_coder_show', {'id': coder.id}) }}">show</a>
+                    </button>
+                    <a href="{{ path('app_coder_edit', {'id': coder.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_coder_new') }}">Create new</a>
+{% endblock %}
